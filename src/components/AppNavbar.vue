@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ref, computed, onMounted, onUnmounted } from 'vue'
 import { RouterLink, useRoute, useRouter } from 'vue-router'
-import { Menu, X, User, LayoutDashboard, CalendarDays, DoorOpen, /* Map, */ BookOpen, LogOut, ShieldCheck } from 'lucide-vue-next'
+import { Menu, X, User, LayoutDashboard, CalendarDays, DoorOpen, Map, BookOpen, LogOut, ShieldCheck } from 'lucide-vue-next'
 import { useAuthStore } from '../stores/auth'
 import NotificationBell from './NotificationBell.vue'
 
@@ -31,7 +31,7 @@ const publicLinks = [
   { to: '/',      label: 'Home',  icon: LayoutDashboard },
   { to: '/event', label: 'Event', icon: CalendarDays    },
   { to: '/ruang', label: 'Venue', icon: DoorOpen        },
-  // { to: '/map',   label: 'Peta',  icon: Map             },
+  { to: '/map',   label: 'Peta',  icon: Map             },
 ]
 const authLinks = [
   { to: '/booking-saya', label: 'Booking Saya', icon: BookOpen },

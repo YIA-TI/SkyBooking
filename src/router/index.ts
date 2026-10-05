@@ -11,7 +11,7 @@ export const router = createRouter({
     { path: '/event', name: 'event', component: () => import('../views/EventView.vue'), meta: { public: true } },
     { path: '/ruang', name: 'ruang', component: () => import('../views/RoomView.vue'), meta: { public: true } },
     { path: '/ruang/:id', name: 'ruang-detail', component: () => import('../views/RoomDetailView.vue'), meta: { public: true } },
-    // { path: '/map', name: 'map', component: () => import('../views/MapView.vue'), meta: { public: true } },
+    { path: '/map', name: 'map', component: () => import('../views/MapView.vue'), meta: { public: true } },
     {
       path: '/admin',
       component: () => import('../layouts/AdminLayout.vue'),

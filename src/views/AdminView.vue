@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { ref, computed } from 'vue'
-import { ShieldCheck, CheckCircle, XCircle, Clock, Users, CalendarDays, X } from 'lucide-vue-next'
+import { ShieldCheck, CheckCircle, XCircle, Clock, X } from 'lucide-vue-next'
 import StatusBadge from '../components/StatusBadge.vue'
 import EmptyState from '../components/EmptyState.vue'
 import { useBookingStore } from '../stores/booking'
@@ -36,7 +36,7 @@ function approve(id: string) {
 }
 
 function reject(id: string) {
-  store.rejectBooking(id)
+  store.rejectBooking(id, '')
   const b = store.bookingList.find(b => b.id === id)
   if (b) notifs.addNotification({ bookingId: b.id, eventName: b.eventName, status: 'rejected' })
   if (selectedBooking.value?.id === id) selectedBooking.value = store.bookingList.find(x => x.id === id) ?? null

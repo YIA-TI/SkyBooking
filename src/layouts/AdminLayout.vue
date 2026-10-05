@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, computed } from 'vue'
+import { ref } from 'vue'
 import { RouterView, RouterLink, useRoute, useRouter } from 'vue-router'
 import { LayoutDashboard, BookOpen, ChevronRight, LogOut, Menu, X, ShieldCheck } from 'lucide-vue-next'
 import { useAuthStore } from '../stores/auth'

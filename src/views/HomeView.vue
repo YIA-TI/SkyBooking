@@ -41,9 +41,6 @@ const stats = computed(() => [
 ])
 
 
-const todayFormatted = new Date().toLocaleDateString('id-ID', {
-  weekday: 'long', day: 'numeric', month: 'long', year: 'numeric'
-})
 
 const availableCount = computed(() => rooms.filter(r => r.status === 'available').length)
 </script>
