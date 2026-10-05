@@ -44,7 +44,7 @@ function delay(i: number) {
 
       <!-- Card -->
       <div
-        class="flex-1 rounded-xl border border-gray-100 bg-gray-50 group-hover:bg-white group-hover:border-gray-200 group-hover:shadow-sm p-3 mb-1"
+        class="flex-1 min-w-0 overflow-hidden rounded-xl border border-gray-100 bg-gray-50 group-hover:bg-white group-hover:border-gray-200 group-hover:shadow-sm p-3 mb-1"
         style="transition: background-color 0.15s ease, border-color 0.15s ease, box-shadow 0.15s ease"
       >
         <div class="flex items-start justify-between gap-2">

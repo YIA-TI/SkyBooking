@@ -386,6 +386,9 @@ async function submit() {
   transition: border-color 0.15s, box-shadow 0.15s, background 0.15s;
   outline: none;
 }
+.input-wrap {
+  width: 100%;
+}
 .input-wrap .field-input {
   padding-left: 36px;
 }
