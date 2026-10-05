@@ -51,7 +51,6 @@
               <li><RouterLink to="/">Beranda</RouterLink></li>
               <li><RouterLink to="/ruang">Daftar Venue</RouterLink></li>
               <li><RouterLink to="/event">Jadwal Event</RouterLink></li>
-              <li><RouterLink to="/map">Peta Venue</RouterLink></li>
               <li><RouterLink to="/booking">Ajukan Booking</RouterLink></li>
             </ul>
           </div>
@@ -74,19 +73,15 @@
             <ul class="footer-contact">
               <li>
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/><circle cx="12" cy="9" r="2.5"/></svg>
-                <span>Yogyakarta International Airport<br/>Jl. Yogya-Wates KM 37, Kulon Progo</span>
+                <span>Palihan, Temon, Kulon Progo Regency,<br/>Special Region of Yogyakarta 55654</span>
               </li>
               <li>
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M22 16.92v3a2 2 0 0 1-2.18 2A19.79 19.79 0 0 1 11.61 19a19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.91-8.18A2 2 0 0 1 3.68 2.72h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 10.09a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-                <span>(021) 550-5079</span>
+                <span>0274 4606072</span>
               </li>
               <li>
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m2 7 10 7 10-7"/></svg>
-                <span>venue@injourneyairports.id</span>
-              </li>
-              <li>
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
-                <span>Senin – Jumat, 08.00 – 17.00 WIB</span>
+                <span>cc172@injorneyairports.id</span>
               </li>
             </ul>
           </div>

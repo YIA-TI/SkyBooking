@@ -5,9 +5,24 @@ import StatusBadge from '../../components/StatusBadge.vue'
 import EmptyState from '../../components/EmptyState.vue'
 import { useBookingStore } from '../../stores/booking'
 import { useNotificationStore } from '../../stores/notifications'
+import { sendApprovalEmail, sendRejectionEmail } from '../../services/emailService'
 
 const store  = useBookingStore()
 const notifs = useNotificationStore()
+
+type ToastType = 'success' | 'error'
+const toast = ref<{ show: boolean; message: string; type: ToastType }>({ show: false, message: '', type: 'success' })
+let toastTimer = 0
+
+function showToast(message: string, type: ToastType = 'success') {
+  clearTimeout(toastTimer)
+  toast.value = { show: true, message, type }
+  toastTimer = window.setTimeout(() => { toast.value.show = false }, 4000)
+}
+
+function fmtDateEmail(d: string) {
+  return new Date(d).toLocaleDateString('id-ID', { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' })
+}
 
 const filterStatus    = ref('')
 const selectedBooking = ref<typeof store.bookingList[0] | null>(null)
@@ -56,37 +71,76 @@ function startReject() {
   rejectError.value = false
 }
 
-function confirmApprove() {
+async function confirmApprove() {
   if (!selectedBooking.value) return
-  const id = selectedBooking.value.id
+  const b = selectedBooking.value
+  const id = b.id
   store.approveBooking(id, adminNote.value || undefined)
   notifs.addNotification({
     bookingId: id,
-    eventName: selectedBooking.value.eventName,
+    eventName: b.eventName,
     status: 'approved',
     adminNote: adminNote.value || undefined,
   })
   selectedBooking.value = store.bookingList.find(x => x.id === id) ?? null
   actionStep.value = 'idle'
   adminNote.value = ''
+
+  try {
+    await sendApprovalEmail({
+      to_email:     b.email,
+      to_name:      b.pic,
+      booking_id:   b.id,
+      event_name:   b.eventName,
+      room_name:    b.roomName,
+      date:         fmtDateEmail(b.date),
+      start_time:   b.startTime,
+      end_time:     b.endTime,
+      participants: b.participants,
+    })
+    showToast('Email konfirmasi persetujuan terkirim.')
+  } catch {
+    showToast('Booking disetujui, tapi email gagal terkirim.', 'error')
+  }
 }
 
-function confirmReject() {
+async function confirmReject() {
   if (!rejectReason.value.trim()) { rejectError.value = true; return }
   if (!selectedBooking.value) return
-  const id = selectedBooking.value.id
-  store.rejectBooking(id, rejectReason.value.trim(), adminNote.value || undefined)
+  const b = selectedBooking.value
+  const id = b.id
+  const reason = rejectReason.value.trim()
+  store.rejectBooking(id, reason, adminNote.value || undefined)
   notifs.addNotification({
     bookingId: id,
-    eventName: selectedBooking.value.eventName,
+    eventName: b.eventName,
     status: 'rejected',
-    rejectReason: rejectReason.value.trim(),
+    rejectReason: reason,
     adminNote: adminNote.value || undefined,
   })
   selectedBooking.value = store.bookingList.find(x => x.id === id) ?? null
   actionStep.value = 'idle'
   rejectReason.value = ''
   adminNote.value = ''
+
+  try {
+    await sendRejectionEmail({
+      to_email:      b.email,
+      to_name:       b.pic,
+      booking_id:    b.id,
+      event_name:    b.eventName,
+      room_name:     b.roomName,
+      date:          fmtDateEmail(b.date),
+      start_time:    b.startTime,
+      end_time:      b.endTime,
+      participants:  b.participants,
+      reject_reason: reason,
+      admin_note:    adminNote.value || undefined,
+    })
+    showToast('Email pemberitahuan penolakan terkirim.')
+  } catch {
+    showToast('Booking ditolak, tapi email gagal terkirim.', 'error')
+  }
 }
 </script>
 
@@ -416,5 +470,28 @@ function confirmReject() {
         </div>
       </Transition>
     </Teleport>
+
+    <!-- Toast notification -->
+    <Teleport to="body">
+      <Transition name="toast">
+        <div
+          v-if="toast.show"
+          class="fixed bottom-6 left-1/2 -translate-x-1/2 z-[200] flex items-center gap-3 px-5 py-3 rounded-xl shadow-lg text-sm font-semibold text-white"
+          :style="toast.type === 'success'
+            ? 'background:linear-gradient(135deg,#0a8f97,#0EB4BE)'
+            : 'background:#ef4444'"
+        >
+          <CheckCircle v-if="toast.type === 'success'" :size="16" />
+          <XCircle v-else :size="16" />
+          {{ toast.message }}
+        </div>
+      </Transition>
+    </Teleport>
   </div>
 </template>
+
+
+<style scoped>
+.toast-enter-active, .toast-leave-active { transition: all 0.3s ease; }
+.toast-enter-from, .toast-leave-to { opacity: 0; transform: translateX(-50%) translateY(16px); }
+</style>
