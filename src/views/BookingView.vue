@@ -377,6 +377,7 @@ async function submit() {
 }
 .field-input {
   width: 100%;
+  box-sizing: border-box;
   padding: 9px 12px;
   font-size: 14px;
   border: 1.5px solid #e5e7eb;
@@ -385,9 +386,16 @@ async function submit() {
   background: #f9fafb;
   transition: border-color 0.15s, box-shadow 0.15s, background 0.15s;
   outline: none;
+  min-width: 0;
+}
+input[type="date"].field-input,
+input[type="time"].field-input {
+  -webkit-appearance: none;
+  appearance: none;
 }
 .input-wrap {
   width: 100%;
+  overflow: hidden;
 }
 .input-wrap .field-input {
   padding-left: 36px;
