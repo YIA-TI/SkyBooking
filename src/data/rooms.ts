@@ -14,7 +14,7 @@ export const rooms: Room[] = [
     id: 'R001',
     name: 'Kawasan Tugu Malioboro',
     terminal: 'Terminal 1',
-    location: 'Area Publik, Lantai 1',
+    location: 'Area Lobby Keberangkatan, Lantai 1',
     capacity: 200,
     facilities: ['Panggung', 'Sound System', 'AC', 'WiFi', 'Lighting', 'Proyektor'],
     status: 'available',
