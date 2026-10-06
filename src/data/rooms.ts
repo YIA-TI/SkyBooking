@@ -40,4 +40,14 @@ export const rooms: Room[] = [
     status: 'available',
     image: new URL('../assets/area-partywisata.webp', import.meta.url).href,
   },
+  {
+    id: 'R004',
+    name: 'Area Drop Zone',
+    terminal: 'Terminal 1',
+    location: 'Area Drop Zone, Lantai 1',
+    capacity: 100,
+    facilities: ['Sound System', 'AC', 'WiFi', 'Lighting'],
+    status: 'available',
+    image: new URL('../assets/area dropzone.jpeg', import.meta.url).href,
+  },
 ]
