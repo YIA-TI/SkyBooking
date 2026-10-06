@@ -12,7 +12,7 @@ export interface Room {
 export const rooms: Room[] = [
   {
     id: 'R001',
-    name: 'Kawasan Maliboro',
+    name: 'Kawasan Tugu Malioboro',
     terminal: 'Terminal 1',
     location: 'Area Publik, Lantai 1',
     capacity: 200,
