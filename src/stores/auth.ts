@@ -6,6 +6,7 @@ const STORAGE_KEY = 'skybook_auth'
 const ACCOUNTS: Record<string, { password: string; name: string; role: 'user' | 'admin' }> = {
   budi:   { password: '123',       name: 'Budi',          role: 'user'  },
   admin:  { password: 'admin123',  name: 'Administrator', role: 'admin' },
+  komersial: { password: 'komersial123', name: 'Komersial', role: 'admin' },
 }
 
 export const useAuthStore = defineStore('auth', () => {
