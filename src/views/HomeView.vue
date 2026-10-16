@@ -10,7 +10,7 @@ import EventList from '../components/EventList.vue'
 import { useAuthStore } from '../stores/auth'
 import { rooms } from '../data/rooms'
 import { events } from '../data/events'
-import coHero from '../assets/copernico-yfmU1uL_mp8-unsplash.webp'
+import coHero from '../assets/yogyakarta-airport-hero.jpg'
 
 const router = useRouter()
 const auth = useAuthStore()
